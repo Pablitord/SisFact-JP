@@ -109,6 +109,16 @@ public class FrmCliente extends JInternalFrame {
 		txtEmail.setColumns(10);
 		
 		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtCedula.setText("");
+				txtNombres.setText("");
+				txtApellidos.setText("");
+				txtDireccion.setText("");
+				txtEmail.setText("");
+				txtTelefono.setText("");
+			}
+		});
 		btnNuevo.setBounds(23, 206, 117, 25);
 		getContentPane().add(btnNuevo);
 		

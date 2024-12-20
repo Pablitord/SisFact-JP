@@ -1,7 +1,5 @@
 package ec.edu.puce.facturacion.forms;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -39,6 +37,11 @@ public class FrmMenuPrincipal extends JFrame {
 		menuBar.add(mnFile);
 
 		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		mntmSalir.setFont(new Font("Dialog", Font.BOLD, 16));
 		mnFile.add(mntmSalir);
 		
@@ -98,5 +101,15 @@ public class FrmMenuPrincipal extends JFrame {
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(new Color(119, 118, 123));
 		contentPane.add(desktopPane, "name_250806999939613");
+	}
+
+
+	public FrmListaClientes getFrmListaClientes() {
+		return frmListaClientes;
+	}
+
+
+	public void setFrmListaClientes(FrmListaClientes frmListaClientes) {
+		this.frmListaClientes = frmListaClientes;
 	}
 }
