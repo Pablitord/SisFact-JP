@@ -13,6 +13,7 @@ public class FrmListaClientes extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private JTable ttblClientes;
     private DefaultTableModel modelo;
+    
 
     public FrmListaClientes() {
         setIconifiable(true);

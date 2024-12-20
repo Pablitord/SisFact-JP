@@ -19,7 +19,8 @@ public class FrmNuevoCliente extends JDialog {
     private FrmListaClientes frmListaClientes;
     private int filaSeleccionada;
     private boolean esNuevoCliente;
-
+    
+    
     public FrmNuevoCliente(FrmListaClientes frmListaClientes) {
         this(frmListaClientes, "", "", "", "", "", "", -1);
     }
