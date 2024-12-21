@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class FrmCliente extends JInternalFrame {
+	
+	private static final long serialVersionUID = 1L;
 	private JTextField txtCedula;
 	private JTextField txtNombres;
 	private JTextField txtApellidos;
