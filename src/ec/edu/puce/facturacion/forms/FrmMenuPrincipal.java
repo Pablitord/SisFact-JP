@@ -6,6 +6,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -21,6 +23,8 @@ public class FrmMenuPrincipal extends JFrame {
 	private FrmCliente frmCliente;
 	private JDesktopPane desktopPane;
 	private FrmListaClientes frmListaClientes;
+	private boolean frmClienteAbierto = false;
+	private boolean frmListaClientesAbierto = false;
 
 	
 	public FrmMenuPrincipal() {
@@ -32,7 +36,7 @@ public class FrmMenuPrincipal extends JFrame {
 		menuBar.setBackground(new Color(255, 190, 111));
 		setJMenuBar(menuBar);
 
-		JMenu mnFile = new JMenu("File");
+		JMenu mnFile = new JMenu("Archivo");
 		mnFile.setFont(new Font("Dialog", Font.BOLD, 16));
 		menuBar.add(mnFile);
 
@@ -52,9 +56,15 @@ public class FrmMenuPrincipal extends JFrame {
 		JMenuItem mntmCrearClientes = new JMenuItem("Crear Clientes");
 		mntmCrearClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmCliente=new FrmCliente();
-				desktopPane.add(frmCliente);
-				frmCliente.setVisible(true);
+				if (!frmClienteAbierto) {
+					frmCliente = new FrmCliente();
+					desktopPane.add(frmCliente);
+					frmCliente.setVisible(true);
+					frmClienteAbierto = true;
+				}else {
+					JOptionPane.showMessageDialog(FrmMenuPrincipal.this, "Ya hay una ventana abierta de Crear Cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
+				
 			}
 		});
 		mntmCrearClientes.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -63,25 +73,20 @@ public class FrmMenuPrincipal extends JFrame {
 		JMenuItem mntmListaDeClientes = new JMenuItem("Lista de Clientes");
 		mntmListaDeClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FrmListaClientes frmListaClientes = new FrmListaClientes();
-				frmListaClientes.setVisible(true);
-				desktopPane.add(frmListaClientes);
+				if(!frmListaClientesAbierto) {
+					FrmListaClientes frmListaClientes = new FrmListaClientes();
+					frmListaClientes.setVisible(true);
+					desktopPane.add(frmListaClientes);
+					frmListaClientesAbierto = true;
+				} else {
+					JOptionPane.showMessageDialog(FrmMenuPrincipal.this, "Ya hay una ventana abierta de Lista Clientes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		mntmListaDeClientes.setFont(new Font("Dialog", Font.BOLD, 16));
 		mnClientes.add(mntmListaDeClientes);
 		
-		JMenu mnProductos = new JMenu("Productos");
-		mnProductos.setFont(new Font("Dialog", Font.BOLD, 16));
-		menuBar.add(mnProductos);
 		
-		JMenuItem mntmCrearProducto = new JMenuItem("Crear Producto");
-		mntmCrearProducto.setFont(new Font("Dialog", Font.BOLD, 16));
-		mnProductos.add(mntmCrearProducto);
-		
-		JMenuItem mntmListaDeProductos = new JMenuItem("Lista de Productos");
-		mntmListaDeProductos.setFont(new Font("Dialog", Font.BOLD, 16));
-		mnProductos.add(mntmListaDeProductos);
 		
 		JMenu mnRedesSociales = new JMenu("Redes sociales");
 		mnRedesSociales.setIcon(new ImageIcon(FrmMenuPrincipal.class.getResource("/ec/edu/puce/facturacion/imagenes/facebook.png")));

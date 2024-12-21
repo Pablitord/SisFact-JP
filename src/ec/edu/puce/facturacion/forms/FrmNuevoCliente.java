@@ -106,24 +106,28 @@ public class FrmNuevoCliente extends JDialog {
         JButton okButton = new JButton("Guardar");
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String cedula = txtCedula.getText();
-                String nombres = txtNombres.getText();
-                String apellidos = txtApellidos.getText();
-                String direccion = txtDireccion.getText();
-                String telefono = txtTelefono.getText();
-                String email = txtEmail.getText();
+            	if(camposVacios()) {
+            		String cedula = txtCedula.getText();
+            		String nombres = txtNombres.getText();
+            		String apellidos = txtApellidos.getText();
+            		String direccion = txtDireccion.getText();
+            		String telefono = txtTelefono.getText();
+            		String email = txtEmail.getText();
 
-                if (esNuevoCliente) {
-                    frmListaClientes.agregarCliente(cedula, nombres, apellidos, direccion, telefono, email);
-                } else {
-                    frmListaClientes.actualizarCliente(filaSeleccionada, cedula, nombres, apellidos, direccion, telefono, email);
-                }
-                dispose();
+            		if (esNuevoCliente) {
+            			frmListaClientes.agregarCliente(cedula, nombres, apellidos, direccion, telefono, email);
+            		} else {
+            			frmListaClientes.actualizarCliente(filaSeleccionada, cedula, nombres, apellidos, direccion, telefono, email);
+            		}
+            		dispose();
+            		
             }
+           }
         });
         okButton.setActionCommand("OK");
         buttonPane.add(okButton);
         getRootPane().setDefaultButton(okButton);
+        
 
         JButton cancelButton = new JButton("Cancelar");
         cancelButton.addActionListener(new ActionListener() {
@@ -133,5 +137,17 @@ public class FrmNuevoCliente extends JDialog {
         });
         cancelButton.setActionCommand("Cancel");
         buttonPane.add(cancelButton);
+    }
+    private boolean camposVacios() {
+    	if(txtCedula.getText().trim().isEmpty() ||
+    			txtNombres.getText().trim().isEmpty() ||
+    			txtApellidos.getText().trim().isEmpty() ||
+    			txtDireccion.getText().trim().isEmpty() ||
+    			txtTelefono.getText().trim().isEmpty() ||
+    			txtEmail.getText().trim().isEmpty()) {
+    		JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error de validación", JOptionPane.WARNING_MESSAGE);
+    		return false;
+    	}
+    	return true;
     }
 }
