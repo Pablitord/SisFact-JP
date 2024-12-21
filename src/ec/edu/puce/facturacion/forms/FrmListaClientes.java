@@ -57,24 +57,20 @@ public class FrmListaClientes extends JInternalFrame {
     }
     
     public void formularioCliente() {
-        if (!nuevoClienteAbierto) {
-            FrmNuevoCliente frmNuevoCliente = new FrmNuevoCliente(this);
-
-            // Agregar un listener para controlar el cierre del formulario
-            frmNuevoCliente.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosed(java.awt.event.WindowEvent e) {
-                    nuevoClienteAbierto = false;  // Restablecer la bandera cuando se cierra el formulario
-                }
-            });
-
-            frmNuevoCliente.setVisible(true);
-            nuevoClienteAbierto = true;
-        } else {
-            JOptionPane.showMessageDialog(this, "El formulario ya está abierto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
+    	if (!nuevoClienteAbierto) {
+    		FrmNuevoCliente frmNuevoCliente = new FrmNuevoCliente(this);
+    		frmNuevoCliente.addWindowListener(new java.awt.event.WindowAdapter() {
+    			@Override
+    			public void windowClosed(java.awt.event.WindowEvent e) {
+    				nuevoClienteAbierto = false;
+    			}
+    		});
+    		frmNuevoCliente.setVisible(true);
+    		nuevoClienteAbierto = true;
+    	} else {
+    		JOptionPane.showMessageDialog(this, "El formulario ya está abierto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    	}
     }
-
 
     public void agregarCliente(String cedula, String nombres, String apellidos, String direccion, String telefono, String email) {
         Object[] nuevoCliente = {cedula, nombres, apellidos, direccion, telefono, email, "Editar"};
